@@ -1,5 +1,5 @@
 from mmdet.apis import init_detector, inference_detector
-from sahi.model import MmdetDetectionModel
+from sahi import AutoDetectionModel
 from sahi.predict import get_sliced_prediction, predict
 from sahi.utils.cv import read_image_as_pil
 
@@ -8,7 +8,8 @@ config_file = 'yolox_tiny_8x8_300e_coco.py'
 checkpoint_file = 'yolox_tiny_8x8_300e_coco_20211124_171234-b4047906.pth'
 
 
-detection_model = MmdetDetectionModel(
+detection_model = AutoDetectionModel.from_pretrained(
+    model_type="mmdet",
 	model_path = checkpoint_file,
 	config_path = config_file,
 	confidence_threshold = 0.2,
